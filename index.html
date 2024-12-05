@@ -9,9 +9,147 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <title>Gestion de Eventos</title>
+    <title>Gestión de Eventos</title>
   </head>
   <body>
+    <div class="container my-5">
+      <!-- Title -->
+      <h1 class="text-center mb-4">Gestión de Eventos</h1>
+
+      <!-- Main Content Divided in Two Columns -->
+      <div class="row">
+        <!-- Left Column: Form Section -->
+        <div class="col-md-6">
+          <div class="p-3 border">
+            <h3 class="mb-3">Programa tu evento aquí</h3>
+            <!-- Form elements go here -->
+
+            <div class="mb-3">
+              <label for="nombreEvento" class="form-label"
+                >Nombre del evento</label
+              >
+              <input type="text" class="form-control" id="nombreEvento" />
+            </div>
+
+            <div class="mb-3">
+              <label for="fecha">Fecha</label>
+              <input id="fecha" class="form-control" type="date" />
+            </div>
+
+            <div class="mb-3">
+              <div class="cs-form">
+                <label for="hora">Hora</label>
+                <input
+                  type="time"
+                  class="form-control"
+                  value="10:05 AM"
+                  id="hora"
+                />
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="descripcion" class="form-label">Descripción</label>
+              <textarea
+                class="form-control"
+                id="descripcion"
+                rows="3"
+              ></textarea>
+            </div>
+
+            <div id="select-prioridad" class="mb-4">
+              <!-- Añadido mb-4 para margen inferior -->
+              <label for="prioridad">Selecciona la prioridad</label>
+              <select
+                class="form-select"
+                aria-label="Default select example"
+                id="prioridad"
+              >
+                <option selected>-</option>
+                <option value="1">Baja</option>
+                <option value="2">Media</option>
+                <option value="3">Alta</option>
+                <option value="4">Urgente</option>
+              </select>
+            </div>
+
+            <div class="mt-4">
+              <!-- Añadido mt-4 para margen superior -->
+              <label>Selecciona los participantes:</label>
+              <br />
+              <input
+                type="checkbox"
+                class="btn-check"
+                id="mariagutierrez"
+                autocomplete="off"
+              />
+              <label class="btn btn-outline-primary" for="mariagutierrez"
+                >Maria Gutierrez</label
+              >
+
+              <input
+                type="checkbox"
+                class="btn-check"
+                id="samuelfernandez"
+                autocomplete="off"
+              />
+              <label class="btn btn-outline-primary" for="samuelfernandez"
+                >Samuel Fernandez</label
+              >
+
+              <input
+                type="checkbox"
+                class="btn-check"
+                id="sergioperez"
+                autocomplete="off"
+              />
+              <label class="btn btn-outline-primary" for="sergioperez"
+                >Sergio Perez</label
+              >
+              <input
+                type="checkbox"
+                class="btn-check"
+                id="mariasanchez"
+                autocomplete="off"
+              />
+              <label class="btn btn-outline-primary" for="mariasanchez"
+                >Maria Sanchez</label
+              >
+              <input
+                type="checkbox"
+                class="btn-check"
+                id="cristianharders"
+                autocomplete="off"
+              />
+              <label class="btn btn-outline-primary" for="cristianharders"
+                >Cristian Harders</label
+              >
+              <input
+                type="checkbox"
+                class="btn-check"
+                id="esudalsio"
+                autocomplete="off"
+              />
+              <label class="btn btn-outline-primary" for="esudalsio"
+                >Eus Dalsio</label
+              >
+            </div>
+            <button type="button" class="btn btn-primary" id="btnCrear">
+              Crear evento
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Column: Display Section -->
+        <div class="col-md-6">
+          <div class="p-3 border">
+            <h3 class="mb-3">Tus eventos</h3>
+            <!-- Cards displaying events go here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
