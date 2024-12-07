@@ -17,9 +17,11 @@ class evento {
 class participante {
   nombre;
   email;
+  id;
 
-  constructor(nombre, email) {
+  constructor(nombre, email, id) {
     this.nombre = nombre;
     this.fecha = email;
+    this.id = id;
   }
 }

@@ -73,68 +73,77 @@
               </select>
             </div>
 
-            <div class="mt-4">
-              <!-- Añadido mt-4 para margen superior -->
+            <div class="mt-4 mb-4">
+              <!-- Add spacing around the checkbox group -->
               <label>Selecciona los participantes:</label>
               <br />
               <input
                 type="checkbox"
                 class="btn-check"
-                id="mariagutierrez"
+                id="1"
                 autocomplete="off"
               />
-              <label class="btn btn-outline-success" for="mariagutierrez"
+              <label class="btn btn-outline-success mb-2 me-2" for="1"
                 >Maria Gutierrez</label
               >
 
               <input
                 type="checkbox"
                 class="btn-check"
-                id="samuelfernandez"
+                id="2"
                 autocomplete="off"
               />
-              <label class="btn btn-outline-success" for="samuelfernandez"
+              <label class="btn btn-outline-success mb-2 me-2" for="2"
                 >Samuel Fernandez</label
               >
 
               <input
                 type="checkbox"
                 class="btn-check"
-                id="sergioperez"
+                id="3"
                 autocomplete="off"
               />
-              <label class="btn btn-outline-success" for="sergioperez"
+              <label class="btn btn-outline-success mb-2 me-2" for="3"
                 >Sergio Perez</label
               >
+
               <input
                 type="checkbox"
                 class="btn-check"
-                id="mariasanchez"
+                id="4"
                 autocomplete="off"
               />
-              <label class="btn btn-outline-success" for="mariasanchez"
+              <label class="btn btn-outline-success mb-2 me-2" for="4"
                 >Maria Sanchez</label
               >
+
               <input
                 type="checkbox"
                 class="btn-check"
-                id="cristianharders"
+                id="5"
                 autocomplete="off"
               />
-              <label class="btn btn-outline-success" for="cristianharders"
+              <label class="btn btn-outline-success mb-2 me-2" for="5"
                 >Cristian Harders</label
               >
+
               <input
                 type="checkbox"
                 class="btn-check"
-                id="esudalsio"
+                id="6"
                 autocomplete="off"
               />
-              <label class="btn btn-outline-success" for="esudalsio"
+              <label class="btn btn-outline-success mb-2 me-2" for="6"
                 >Eus Dalsio</label
               >
             </div>
-            <button type="button" class="btn btn-success btn-lg" id="btnCrear">
+
+            <!-- Add spacing above the button -->
+            <button
+              type="button"
+              class="btn btn-success btn-lg mt-4"
+              id="btnCrear"
+            >
               CREAR EVENTO
             </button>
           </div>
@@ -142,9 +151,37 @@
 
         <!-- Right Column: Display Section -->
         <div class="col-md-6">
-          <div class="p-3 border">
+          <div class="p-3 border" id="eventosCartas">
             <h3 class="mb-3">Tus eventos</h3>
             <!-- Cards displaying events go here -->
+
+            <div class="card" style="width: 18rem">
+              <div class="ratio ratio-1x1">
+                <img
+                  src="imagenes/3.jpg"
+                  class="card-img-top"
+                  alt="prioridad alta"
+                />
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Reunión con ejecutivos</h5>
+                <p class="card-text">
+                  Hablar con los directivos para explicar las proyecciones del
+                  Q3. Cubrir factores económicos, especialmente microeconómicos.
+                </p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Prioridad: Alta</li>
+                <li class="list-group-item">13/04/2025</li>
+                <li class="list-group-item">
+                  Participantes: Maria Gutierrez, Joe Rogan
+                </li>
+              </ul>
+              <div class="card-body">
+                <a href="#" class="card-link">Ir a evento</a>
+                <a href="#" class="card-link">Editar evento</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
