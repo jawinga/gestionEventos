@@ -79,9 +79,24 @@ btnCrear.addEventListener("click", () => {
 let eventosCartas = document.querySelector("#eventosCartas");
 
 btnCrear.addEventListener("click", (e) => {
-  let crearCarta = document.createElement("div");
+  if (
+    nombreEvento.value === "" ||
+    fecha.value === "" ||
+    hora.value === "" ||
+    descripcion.value === "" ||
+    prioridad.value === "" ||
+    participantesSelect.length == 0
+  ) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Something went wrong!",
+      footer: '<a href="#">Why do I have this issue?</a>',
+    });
+  } else {
+    let crearCarta = document.createElement("div");
 
-  crearCarta.innerHTML = `
+    crearCarta.innerHTML = `
   <div class="card" style="width: 18rem">
     <div class="ratio ratio-1x1">
       <img
@@ -107,12 +122,21 @@ btnCrear.addEventListener("click", (e) => {
     </div>
   </div>`;
 
-  eventosCartas.appendChild(crearCarta);
+    eventosCartas.appendChild(crearCarta);
 
-  nombreEvento.value = "";
-  prioridad.value = "";
-  hora.value = "";
-  descripcion.value = "";
-  fecha.value = "";
-  participantesSelect = [];
+    nombreEvento.value = "";
+    prioridad.value = "";
+    hora.value = "";
+    descripcion.value = "";
+    fecha.value = "";
+    participantesSelect = [];
+    participantesCheck.checked = false;
+
+    let imagenVacio = document.querySelector("#imagenVacio");
+    imagenVacio.style.visibility = "hidden";
+
+    participantesCheck.forEach((seleccionado) => {
+      seleccionado.checked = false;
+    });
+  }
 });

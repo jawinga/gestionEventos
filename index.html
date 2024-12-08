@@ -152,36 +152,28 @@
         <!-- Right Column: Display Section -->
         <div class="col-md-6">
           <div class="p-3 border" id="eventosCartas">
-            <h3 class="mb-3">Tus eventos</h3>
-            <!-- Cards displaying events go here -->
-
-            <div class="card" style="width: 18rem">
-              <div class="ratio ratio-1x1">
-                <img
-                  src="imagenes/3.jpg"
-                  class="card-img-top"
-                  alt="prioridad alta"
-                />
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">Reunión con ejecutivos</h5>
-                <p class="card-text">
-                  Hablar con los directivos para explicar las proyecciones del
-                  Q3. Cubrir factores económicos, especialmente microeconómicos.
-                </p>
-              </div>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">Prioridad: Alta</li>
-                <li class="list-group-item">13/04/2025</li>
-                <li class="list-group-item">
-                  Participantes: Maria Gutierrez, Joe Rogan
-                </li>
-              </ul>
-              <div class="card-body">
-                <a href="#" class="card-link">Ir a evento</a>
-                <a href="#" class="card-link">Editar evento</a>
-              </div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h3 class="mb-0">Tus eventos</h3>
+              <select class="form-select w-auto" aria-label="Filtrar eventos">
+                <option selected>Filtrar eventos</option>
+                <option value="alta">Prioridad: Alta</option>
+                <option value="media">Prioridad: Media</option>
+                <option value="baja">Prioridad: Baja</option>
+                <option value="fecha">Fecha más cercana</option>
+              </select>
             </div>
+
+            <div class="text-center" id="imagenVacio">
+              <img
+                src="/imagenes/empty.svg"
+                alt="No events available"
+                class="img-fluid my-4"
+                style="width: 150px"
+              />
+              <p class="text-muted">No hay eventos disponibles actualmente.</p>
+            </div>
+
+            <!-- Cards displaying events go here -->
           </div>
         </div>
       </div>
@@ -194,5 +186,6 @@
     ></script>
     <script src="clases.js"></script>
     <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
 </html>
