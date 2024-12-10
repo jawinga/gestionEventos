@@ -5,6 +5,7 @@ let descripcion = document.querySelector("#descripcion");
 let prioridad = document.querySelector("#prioridad");
 let btnCrear = document.querySelector("#btnCrear");
 let participantesCheck = document.querySelectorAll(".btn-check");
+let imagenVacio = document.querySelector("#imagenVacio");
 
 function prioridadNivel() {
   switch (prioridad.value) {
@@ -108,7 +109,7 @@ btnCrear.addEventListener("click", () => {
       .forEach((checkbox) => (checkbox.checked = false));
 
     // Hide empty image
-    document.querySelector("#imagenVacio").style.display = "none";
+    imagenVacio.style.display = "none";
   }
 });
 
@@ -137,6 +138,9 @@ select.addEventListener("change", (e) => {
   if (filtrarPrioridad === "0") {
     cartasArray.forEach((carta) => carta.classList.remove("d-none"));
     return;
+  }
+
+  if (cartasVisibles.length <= 0) {
   }
 });
 
