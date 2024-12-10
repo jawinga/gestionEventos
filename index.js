@@ -1,12 +1,3 @@
-let trabajadores = [
-  new participante("Maria Gutierrez", "mariagutierrez@gmail.com", 1),
-  new participante("Samuel Fernandez", "samuelfernandez@gmail.com", 2),
-  new participante("Sergio Perez", "sergioperez@gmail.com", 3),
-  new participante("Maria Sanchez", "mariasanchez@gmail.com", 4),
-  new participante("Cristian Harders", "cristianharders@gmail.com", 5),
-  new participante("Eus Dalsio", "eusdalsio@gmail.com", 6),
-];
-
 let nombreEvento = document.querySelector("#nombreEvento");
 let fecha = document.querySelector("#fecha");
 let hora = document.querySelector("#hora");
@@ -16,48 +7,26 @@ let btnCrear = document.querySelector("#btnCrear");
 let participantesCheck = document.querySelectorAll(".btn-check");
 
 function prioridadNivel() {
-  if (prioridad.value == 1) {
-    let baja = console.log("Prioridad: Baja");
-    return baja;
-  } else if (prioridad.value == 2) {
-    let media = console.log("Prioridad: Media");
-    return media;
-  } else if (prioridad.value == 3) {
-    let alta = console.log("Prioridad: Alta");
-
-    return alta;
-  } else if (prioridad.value == 4) {
-    let urgente = console.log("Prioridad: Urgente");
-    return urgente;
-  } else {
-    let noSeleccionado = console.log(
-      "Prioridad:No ha seleccionado nivel de prioridad."
-    );
-    return noSeleccionado;
+  switch (prioridad.value) {
+    case "1":
+      return "Baja";
+    case "2":
+      return "Media";
+    case "3":
+      return "Alta";
+    case "4":
+      return "Urgente";
+    default:
+      return "No seleccionada";
   }
 }
 
 let participantesSelect = [];
 
 btnCrear.addEventListener("click", () => {
-  let buscarTrabajador;
-
   participantesCheck.forEach((participante) => {
     if (participante.checked) {
       let idPart = document.querySelector(`label[for='${participante.id}']`);
-      //participantesSelect.push(trabajadores[idPart]);
-
-      /*
-      if (idPart) {
-        buscarTrabajador = trabajadores.find(
-          (trabajador) => trabajador.id === idPart.innerText.trim()
-        );
-
-        if (buscarTrabajador) {
-          participantesSelect.push(buscarTrabajador);
-        }
-      }
-      */
 
       if (idPart) {
         let innerName = idPart.innerText;
@@ -66,7 +35,6 @@ btnCrear.addEventListener("click", () => {
       }
     }
   });
-
   console.log("Nuevo evento:");
   console.log("Nombre: ", nombreEvento.value);
   console.log("Fecha: ", fecha.value);
@@ -78,65 +46,134 @@ btnCrear.addEventListener("click", () => {
 
 let eventosCartas = document.querySelector("#eventosCartas");
 
-btnCrear.addEventListener("click", (e) => {
+btnCrear.addEventListener("click", () => {
   if (
     nombreEvento.value === "" ||
     fecha.value === "" ||
     hora.value === "" ||
     descripcion.value === "" ||
     prioridad.value === "" ||
-    participantesSelect.length == 0
+    participantesSelect.length === 0
   ) {
     Swal.fire({
       icon: "error",
       title: "Oops...",
-      text: "Something went wrong!",
-      footer: '<a href="#">Why do I have this issue?</a>',
+      text: "Por favor, rellena todos los campos.",
     });
   } else {
-    let crearCarta = document.createElement("div");
+    const crearCol = document.createElement("div");
+    crearCol.className = "col-md-6"; // Each card takes half of the row width.
 
-    crearCarta.innerHTML = `
-  <div class="card" style="width: 18rem">
-    <div class="ratio ratio-1x1">
-      <img
-        src="imagenes/${prioridad.value}.jpg"
-        class="card-img-top"
-        alt="prioridad ${prioridad.value}.jpg"
-      />
+    const crearCarta = `
+    <div class="card ${
+      prioridad.value
+    } animate__animated animate__backInUp" style="width: 100%;">
+      <div class="ratio ratio-1x1">
+        <img src="imagenes/${
+          prioridad.value
+        }.jpg" alt="prioridad" class="card-img-top" />
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">${nombreEvento.value}</h5>
+        <p class="card-text">${descripcion.value}</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Prioridad: ${prioridadNivel()}</li>
+        <li class="list-group-item">${fecha.value}</li>
+        <li class="list-group-item">Participantes: ${participantesSelect.join(
+          ", "
+        )}</li>
+      </ul>
     </div>
-    <div class="card-body">
-      <h5 class="card-title">${nombreEvento.value}</h5>
-      <p class="card-text">${descripcion.value}</p>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Prioridad: ${prioridadNivel()}</li>
-      <li class="list-group-item">${fecha.value}</li>
-      <li class="list-group-item">Participantes: ${participantesSelect.join(
-        ", "
-      )}</li>
-    </ul>
-    <div class="card-body">
-      <a href="#" class="card-link">Ir a evento</a>
-      <a href="#" class="card-link">Editar evento</a>
-    </div>
-  </div>`;
+  `;
 
-    eventosCartas.appendChild(crearCarta);
+    Swal.fire({
+      title: "Good job!",
+      text: "You clicked the button!",
+      icon: "success",
+    });
 
+    crearCol.innerHTML = crearCarta;
+    document.querySelector("#eventosCartas").appendChild(crearCol);
+
+    // Clear form
     nombreEvento.value = "";
-    prioridad.value = "";
+    fecha.value = "";
     hora.value = "";
     descripcion.value = "";
-    fecha.value = "";
+    prioridad.value = "";
     participantesSelect = [];
-    participantesCheck.checked = false;
+    document
+      .querySelectorAll(".btn-check")
+      .forEach((checkbox) => (checkbox.checked = false));
 
-    let imagenVacio = document.querySelector("#imagenVacio");
-    imagenVacio.style.visibility = "hidden";
-
-    participantesCheck.forEach((seleccionado) => {
-      seleccionado.checked = false;
-    });
+    // Hide empty image
+    document.querySelector("#imagenVacio").style.display = "none";
   }
 });
+
+let select = document.querySelector("#select");
+
+select.addEventListener("change", (e) => {
+  let cartaPrioridad = document.querySelectorAll(".card");
+  let cartasArray = Array.from(cartaPrioridad);
+  let filtrarPrioridad = select.value;
+
+  let cartasNoVisibles = cartasArray.filter(
+    (carta) => !carta.classList.contains(filtrarPrioridad)
+  );
+  let cartasVisibles = cartasArray.filter((carta) =>
+    carta.classList.contains(filtrarPrioridad)
+  );
+
+  cartasNoVisibles.forEach((card) => {
+    card.classList.add("d-none");
+  });
+
+  cartasVisibles.forEach((card) => {
+    card.classList.remove("d-none");
+  });
+
+  if (filtrarPrioridad === "0") {
+    cartasArray.forEach((carta) => carta.classList.remove("d-none"));
+    return;
+  }
+});
+
+eventosCartas.addEventListener("mouseover", (e) => {
+  let card = e.target.closest(".card");
+
+  if (card) {
+    card.classList.add("border", "border-dark", "border-2");
+  }
+});
+
+eventosCartas.addEventListener("mouseout", (e) => {
+  let card = e.target.closest(".card");
+
+  if (card) {
+    card.classList.remove("border", "border-dark", "border-2");
+  }
+});
+
+/*eventosCartas.addEventListener("mouseout", (e) => {
+  if (e.target.classList.contains("card")) {
+    e.target.classList.remove("border", "border-dark");
+  }
+});
+*/
+
+/*
+cartaPrioridad.forEach((carta) => {
+  carta.addEventListener("mouseover", (e) => {
+    carta.classList.add("border border-dark");
+  });
+});
+
+cartaPrioridad.forEach((carta) => {
+  carta.addEventListener("mouseout", (e) => {
+    carta.classList.remove("border border-dark");
+  });
+});
+
+*/
